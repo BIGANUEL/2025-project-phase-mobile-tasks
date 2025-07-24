@@ -1,16 +1,31 @@
-# anuel
+# Flutter E-Commerce UI
 
-A new Flutter project.
+## 📱 Screenshot Gallery
 
-## Getting Started
+### Home Page
+![Home Screen](./screenshots/home.png)  
+*Product grid with search and add button*
 
-This project is a starting point for a Flutter application.
+### Search Page
+![Search Screen](./screenshots/search.png)  
+*Filtering by category and price range*
 
-A few resources to get you started if this is your first Flutter project:
+### Details Page
+![Details Screen](./screenshots/details.png)  
+*Product details with size selector*
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Add Product Page
+![Add Screen](./screenshots/add.png)  
+*Form for adding new products*
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🛠️ Project Setup
+
+```bash
+# Clone repository
+git clone https://github.com/your-username/flutter-ecommerce.git
+
+# Install dependencies
+flutter pub get
+
+# Run the app
+flutter run

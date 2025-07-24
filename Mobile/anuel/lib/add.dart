@@ -19,10 +19,11 @@ class AddProductPage extends StatelessWidget {
                     size: 20,
                     color: Color(0xFF3F51FF),
                   ),
-                  const SizedBox(width: 100),
+                  const SizedBox(width: 12),
                   const Text(
                     "Add Product",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                    textAlign: TextAlign.center,
                   ),
                 ],
               ),

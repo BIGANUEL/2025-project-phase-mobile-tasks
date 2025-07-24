@@ -1,36 +1,83 @@
 import 'package:flutter/material.dart';
 
-class SearchPage extends StatelessWidget {
+class Product {
+  final String name;
+  final String category;
+  final double price;
+  final String imagePath;
+  final double rating;
+
+  Product({
+    required this.name,
+    required this.category,
+    required this.price,
+    required this.imagePath,
+    required this.rating,
+  });
+}
+
+class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
+
+  @override
+  State<SearchPage> createState() => _SearchPageState();
+}
+
+class _SearchPageState extends State<SearchPage> {
+  final List<Product> products = [
+    Product(
+      name: "Timberland",
+      category: "Men's shoe",
+      price: 120,
+      rating: 5.0,
+      imagePath: "assets/images/shoe1.jpg",
+    ),
+    Product(
+      name: "Jordan 11",
+      category: "Men's shoe",
+      price: 100,
+      rating: 4.5,
+      imagePath: "assets/images/shoe2.png",
+    ),
+    Product(
+      name: "Tshirt",
+      category: "Men's T-Shirts",
+      price: 95,
+      rating: 4.0,
+      imagePath: "assets/images/tshirt1.png",
+    ),
+  ];
+
+  final TextEditingController categoryController = TextEditingController();
+  RangeValues priceRange = const RangeValues(0, 200);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF2F2F2),
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           children: [
-            // Top bar with search and filter
+            // Header
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               child: Row(
                 children: [
-                  const Icon(Icons.arrow_back, color: Colors.black54),
-                  const SizedBox(width: 12),
+                  const Icon(Icons.arrow_back_ios_new_rounded, color: Color(0xFF3F51FF)),
+                  const SizedBox(width: 10),
                   const Expanded(
                     child: Text(
                       "Search Product",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                      ),
+                      style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  const SizedBox(width: 36), // to balance the back icon
+                  const SizedBox(width: 36),
                 ],
               ),
             ),
+            const SizedBox(height: 25),
+            // Search Field and Filter Icon
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
@@ -44,6 +91,14 @@ class SearchPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12),
                           borderSide: const BorderSide(color: Colors.grey),
                         ),
+                        suffixIcon: Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: Icon(
+                            Icons.arrow_forward_sharp,
+                            color: Color(0xFF3F51FF),
+                          ),
+                        ),
+                        suffixIconConstraints: const BoxConstraints(minWidth: 24, minHeight: 24),
                       ),
                     ),
                   ),
@@ -55,99 +110,107 @@ class SearchPage extends StatelessWidget {
                       color: const Color(0xFF3F51FF),
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: const Icon(Icons.arrow_forward, color: Colors.white),
-                  ),
-                  const SizedBox(width: 8),
-                  Container(
-                    height: 48,
-                    width: 48,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF3F51FF),
-                      borderRadius: BorderRadius.circular(12),
+                    child: IconButton(
+                      icon: const Icon(Icons.filter_list_sharp, color: Colors.white, size: 26),
+                      onPressed: () {},
                     ),
-                    child: const Icon(Icons.filter_alt, color: Colors.white),
                   ),
                 ],
               ),
             ),
 
-            const SizedBox(height: 16),
+            const SizedBox(height: 34),
 
-            // Product cards
+            // Product List
             Expanded(
-              child: ListView(
+              child: ListView.builder(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
-                children: [
-                  _ProductCard(),
-                  const SizedBox(height: 16),
-                  _ProductCard(),
-                  const SizedBox(height: 24),
+                itemCount: products.length,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      ProductCard(product: products[index]),
+                      const SizedBox(height: 16),
+                    ],
+                  );
+                },
+              ),
+            ),
 
-                  // Filter Section
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+            // Filter Section (Category, Price, Apply Button)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Category",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                  const SizedBox(height: 8),
+                  TextField(
+                    controller: categoryController,
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(color: Colors.grey.shade50),
+                      ),
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text("Category", style: TextStyle(fontSize: 16)),
-                        const SizedBox(height: 8),
-                        TextField(
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        const Text("Price", style: TextStyle(fontSize: 16)),
-                        const SizedBox(height: 8),
-                        SliderTheme(
-                          data: SliderThemeData(
-                            trackHeight: 8,
-                            thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 8),
-                          ),
-                          child: RangeSlider(
-                            values: const RangeValues(20, 80),
-                            onChanged: (RangeValues values) {},
-                            activeColor: const Color(0xFF3F51FF),
-                            inactiveColor: Colors.grey.shade300,
-                            min: 0,
-                            max: 100,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        SizedBox(
-                          width: double.infinity,
-                          height: 50,
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF3F51FF),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                            child: const Text(
-                              "APPLY",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                letterSpacing: 1.1,
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                      ],
+                  ),
+                  const SizedBox(height: 24),
+                  const Text(
+                    "Price",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                  const SizedBox(height: 8),
+                  SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                      trackHeight: 4,
+                      activeTrackColor: const Color(0xFF3F51FF),
+                      inactiveTrackColor: Colors.grey[300],
+                      thumbColor: const Color(0xFF3F51FF),
+                      overlayColor: const Color(0xFF3F51FF).withOpacity(0.2),
                     ),
-                  )
+                    child: RangeSlider(
+                      values: priceRange,
+                      min: 0,
+                      max: 200,
+                      onChanged: (RangeValues values) {
+                        setState(() {
+                          priceRange = values;
+                        });
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF3F51FF),
+                        padding: const EdgeInsets.symmetric(vertical: 14),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      onPressed: () {
+                        // Apply filter logic can go here
+                      },
+                      child: const Text(
+                        "APPLY",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 24),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -155,7 +218,11 @@ class SearchPage extends StatelessWidget {
   }
 }
 
-class _ProductCard extends StatelessWidget {
+class ProductCard extends StatelessWidget {
+  final Product product;
+
+  const ProductCard({super.key, required this.product});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -170,45 +237,60 @@ class _ProductCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-            child: Image.network(
-              'https://images.unsplash.com/photo-1606811849517-9b117fe3ebda',
-              height: 160,
+            child: Image.asset(
+              product.imagePath,
+              height: 230,
               width: double.infinity,
               fit: BoxFit.cover,
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(12),
-            child: Column(
+            child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    const Expanded(
-                      child: Text(
-                        "Derby Leather Shoes",
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                // Left: Name and Category
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        product.name,
+                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                       ),
+                      const SizedBox(height: 6),
+                      Text(
+                        product.category,
+                        style: const TextStyle(color: Colors.black54),
+                      ),
+                    ],
+                  ),
+                ),
+
+                // Right: Price and Rating
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      "\$${product.price}",
+                      style: const TextStyle(fontWeight: FontWeight.w500),
                     ),
-                    const Text(
-                      "\$120",
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    )
+                    const SizedBox(height: 6),
+                    Row(
+                      children: [
+                        const Icon(Icons.star, color: Colors.amber, size: 18),
+                        const SizedBox(width: 4),
+                        Text(
+                          "(${product.rating})",
+                          style: const TextStyle(color: Colors.black54),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
-                const SizedBox(height: 4),
-                const Text("Men’s shoe", style: TextStyle(color: Colors.black54)),
-                const SizedBox(height: 6),
-                Row(
-                  children: const [
-                    Icon(Icons.star, color: Colors.amber, size: 18),
-                    SizedBox(width: 4),
-                    Text("(4.0)", style: TextStyle(color: Colors.black54)),
-                  ],
-                )
               ],
             ),
-          )
+          ),
         ],
       ),
     );

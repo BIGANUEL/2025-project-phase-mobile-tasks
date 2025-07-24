@@ -174,16 +174,21 @@ Expanded(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (product.imagePath != null)
+           if (product.imagePath != null)
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
                 child: Image.asset(
-                  product.imagePath!,
+                  product.imagePath!, // Still using ! but now with verification
                   height: 240,
                   width: double.infinity,
                   fit: BoxFit.cover,
-                ),
-              ),
+                  errorBuilder: (context, error, stackTrace) => Container( // Error handling
+                    height: 240,
+                    color: Colors.grey.shade200,
+                    child: Icon(Icons.error_outline, color: Colors.red),
+      ),
+    ),
+  ),
             const SizedBox(height: 9),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
