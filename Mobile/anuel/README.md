@@ -1,31 +1,40 @@
-# Flutter E-Commerce UI
+# Flutter E-Commerce App
 
-## 📱 Screenshot Gallery
+## 📱 App Preview
+<div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 16px; margin: 20px 0;">
+  <div style="flex: 1; min-width: 250px;">
+    <img src="./screenshots/home.png" alt="Home Screen" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    <p style="text-align: center; margin-top: 8px; font-size: 0.9em;">Home Screen</p>
+  </div>
+  <div style="flex: 1; min-width: 250px;">
+    <img src="./screenshots/search.png" alt="Search Screen" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    <p style="text-align: center; margin-top: 8px; font-size: 0.9em;">Search Screen</p>
+  </div>
+  <div style="flex: 1; min-width: 250px;">
+    <img src="./screenshots/details.png" alt="Details Screen" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    <p style="text-align: center; margin-top: 8px; font-size: 0.9em;">Details Screen</p>
+  </div>
+  <div style="flex: 1; min-width: 250px;">
+    <img src="./screenshots/add.png" alt="Add Product Screen" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+    <p style="text-align: center; margin-top: 8px; font-size: 0.9em;">Add Product</p>
+  </div>
+</div>
 
-### Home Page
-![Home Screen](./screenshots/home.png)  
-*Product grid with search and add button*
+## 📝 Description
+A modern Flutter e-commerce app featuring:
 
-### Search Page
-![Search Screen](./screenshots/search.png)  
-*Filtering by category and price range*
+- **Product browsing** with clean grid layout
+- **Advanced search** with price range filters
+- **Detailed product views** with size selection
+- **Product management** for adding/editing items
 
-### Details Page
-![Details Screen](./screenshots/details.png)  
-*Product details with size selector*
+Built with:
+- Flutter 3.x
+- Material Design 3
+- Responsive layouts
+- Custom UI components
 
-### Add Product Page
-![Add Screen](./screenshots/add.png)  
-*Form for adding new products*
-
-## 🛠️ Project Setup
-
+## 🚀 Getting Started
 ```bash
-# Clone repository
-git clone https://github.com/your-username/flutter-ecommerce.git
-
-# Install dependencies
 flutter pub get
-
-# Run the app
 flutter run
