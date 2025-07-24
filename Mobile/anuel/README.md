@@ -1,48 +1,42 @@
 # Flutter E-Commerce UI App
 
-## 📱 App Preview
+## 📱 App Screens
 
-<div style="display: flex; flex-direction: row; gap: 16px; margin: 20px 0; flex-wrap: nowrap;">
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 20px 0;">
 
-  <div style="flex: 1; min-width: 250px; display: flex; flex-direction: column; align-items: center;">
-    <img src="./screenshots/home.png" alt="Home Screen" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-    <p style="text-align: center; margin-top: 8px; font-size: 0.9em;">Home Screen</p>
-  </div>
+### Home Page
+<div style="border: 1px solid #eee; border-radius: 8px; padding: 10px; text-align: center;">
+![Home Screen](./screenshots/home.png)
+<p style="margin-top: 8px; font-size: 0.9em;">Product grid with search and add button</p>
+</div>
 
-  <div style="flex: 1; min-width: 250px; display: flex; flex-direction: column; align-items: center;">
-    <img src="./screenshots/search.png" alt="Search Screen" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-    <p style="text-align: center; margin-top: 8px; font-size: 0.9em;">Search Screen</p>
-  </div>
+### Product Details
+<div style="border: 1px solid #eee; border-radius: 8px; padding: 10px; text-align: center;">
+![Details Screen](./screenshots/details.png)
+<p style="margin-top: 8px; font-size: 0.9em;">Product details with size selector</p>
+</div>
 
-  <div style="flex: 1; min-width: 250px; display: flex; flex-direction: column; align-items: center;">
-    <img src="./screenshots/details.png" alt="Details Screen" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-    <p style="text-align: center; margin-top: 8px; font-size: 0.9em;">Details Screen</p>
-  </div>
-
-  <div style="flex: 1; min-width: 250px; display: flex; flex-direction: column; align-items: center;">
-    <img src="./screenshots/add.png" alt="Add Product Screen" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-    <p style="text-align: center; margin-top: 8px; font-size: 0.9em;">Add Product</p>
-  </div>
+### Add Product
+<div style="border: 1px solid #eee; border-radius: 8px; padding: 10px; text-align: center;">
+![Add Screen](./screenshots/add.png)
+<p style="margin-top: 8px; font-size: 0.9em;">Form for adding new products</p>
+</div>
 
 </div>
 
-## 📝 Description
+## Key Features
+- **Product Catalog**: Browse available items with prices
+- **Detailed Views**: See product specifications and sizes
+- **Management**: Add new products with images and details
+- **Search & Filters**: Find products by category and price range
 
-A modern Flutter e-commerce app featuring:
-
-- **Product browsing** with clean grid layout  
-- **Advanced search** with price range filters  
-- **Detailed product views** with size selection  
-- **Product management** for adding/editing items  
-
-Built with:  
-- Flutter 3.x  
-- Material Design 3  
-- Responsive layouts  
-- Custom UI components  
-
-## 🚀 Getting Started
-
+## 🛠️ Setup Instructions
 ```bash
+# Clone repository
+git clone https://github.com/your-username/flutter-ecommerce.git
+
+# Install dependencies
 flutter pub get
+
+# Run the app
 flutter run
