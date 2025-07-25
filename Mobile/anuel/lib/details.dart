@@ -1,3 +1,4 @@
+import 'package:anuel/home.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,8 @@ class _DetailsPageState extends State<DetailsPage> {
   final List<int> sizes = [39, 40, 41, 42, 43, 44];
   @override
   Widget build(BuildContext context) {
+    final product = ModalRoute.of(context)!.settings.arguments as Product;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -26,7 +29,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     height: MediaQuery.of(context).size.height * 0.4,
                     width: double.infinity,
                     child: Image.asset(
-                      'assets/images/shoe1.jpg',
+                      product.imagePath ?? 'assests/images/default.png',
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -39,7 +42,9 @@ class _DetailsPageState extends State<DetailsPage> {
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                         icon: Icon(
                           Icons.arrow_back_ios_new_rounded,
                           color: Color(0xFF3F51FF),
@@ -61,9 +66,9 @@ class _DetailsPageState extends State<DetailsPage> {
                       children: [
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children: [
                             Text(
-                              "Men's shoe",
+                              product.category,
                               style: TextStyle(
                                 color: Colors.grey,
                                 fontSize: 14,
@@ -71,7 +76,7 @@ class _DetailsPageState extends State<DetailsPage> {
                             ),
                             SizedBox(height: 6),
                             Text(
-                              "Timberland",
+                              product.name,
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
@@ -83,11 +88,11 @@ class _DetailsPageState extends State<DetailsPage> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Row(
-                              children: const [
+                              children: [
                                 Icon(Icons.star, color: Colors.amber, size: 18),
                                 SizedBox(width: 4),
                                 Text(
-                                  "(5.0)",
+                                  "(${product.rating})",
                                   style: TextStyle(
                                     color: Colors.grey,
                                     fontSize: 14,
@@ -96,8 +101,8 @@ class _DetailsPageState extends State<DetailsPage> {
                               ],
                             ),
                             const SizedBox(height: 6),
-                            const Text(
-                              "\$120",
+                            Text(
+                              "\$${product.price.toStringAsFixed(2)}",
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -164,53 +169,51 @@ class _DetailsPageState extends State<DetailsPage> {
                         },
                       ),
                     ),
-                  const SizedBox(height: 24),
+                    const SizedBox(height: 24),
 
-                  const Text(
-                    "The Timberland Classic 6-Inch Boot is the original waterproof boot built to withstand harsh weather while keeping your feet dry and comfortable. Made from premium full-grain waterproof leather with seam-sealed construction, these rugged yet refined boots feature a padded collar for enhanced comfort and ankle support, along with a durable rubber lug outsole for superior traction on all terrains. Designed with Timberland's commitment to sustainability, these boots incorporate recycled materials without compromising quality. The removable OrthoLite footbed provides all-day comfort with anti-fatigue technology, making them ideal for both outdoor adventures and urban wear."
-                  ),
+                    Text(
+                      product.description,
+                      style: const TextStyle(fontSize: 14),
+                    ),
 
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: OutlinedButton(
-                          style: OutlinedButton.styleFrom(
-                            side: const BorderSide(color: Colors.red),
-                            shape: RoundedRectangleBorder(
+                    const SizedBox(height: 24),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: OutlinedButton(
+                            style: OutlinedButton.styleFrom(
+                              side: const BorderSide(color: Colors.red),
+                              shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                            padding: const EdgeInsets.symmetric(vertical: 10),
-                          ),
-                          onPressed: (){},
-                          child: const Text(
-                            "DELETE",
-                            style: TextStyle(color: Colors.red),
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                            ),
+                            onPressed: () {},
+                            child: const Text(
+                              "DELETE",
+                              style: TextStyle(color: Colors.red),
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:  const Color(0xFF3F51FF),
-                            shape: RoundedRectangleBorder(
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFF3F51FF),
+                              shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                            padding: const EdgeInsets.symmetric(vertical: 10),
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                            ),
+                            onPressed: () {},
+                            child: const Text(
+                              "UPDATE",
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
-                          onPressed:(){}, 
-                          child: const Text("UPDATE",
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                          ),
-                          ),
-                      ),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),

@@ -6,6 +6,7 @@ class Product {
   final double price;
   final double rating;
   final String? imagePath;
+  final String description;
 
   Product({
     required this.name,
@@ -13,6 +14,7 @@ class Product {
     required this.price,
     required this.rating,
     this.imagePath,
+    required this.description,
   });
 }
 
@@ -31,6 +33,7 @@ class _HomePageState extends State<HomePage> {
       price: 120,
       rating: 5.0,
       imagePath: "assets/images/shoe1.jpg",
+      description: "The Timberland Classic 6-Inch Boot is the original waterproof boot built to withstand harsh weather while keeping your feet dry and comfortable. Made from premium full-grain waterproof leather with seam-sealed construction, these rugged yet refined boots feature a padded collar for enhanced comfort and ankle support, along with a durable rubber lug outsole for superior traction on all terrains. Designed with Timberland's commitment to sustainability, these boots incorporate recycled materials without compromising quality. The removable OrthoLite footbed provides all-day comfort with anti-fatigue technology, making them ideal for both outdoor adventures and urban wear."
     ),
     Product(
       name: "Jordan 11",
@@ -38,6 +41,7 @@ class _HomePageState extends State<HomePage> {
       price: 100,
       rating: 4.5,
       imagePath: "assets/images/shoe2.png",
+      description: "The Air Jordan 11 Retro is a legendary basketball sneaker that blends heritage design with modern performance. Originally released in 1995 and worn by Michael Jordan during his championship run, this iconic shoe features a sleek combination of patent leather and ballistic mesh for a bold yet refined look. A full-length Air-Sole unit provides responsive cushioning, while a carbon fiber shank and translucent rubber outsole offer stability and traction on and off the court. Known for its timeless silhouette and premium construction, the Jordan 11 remains a staple in both streetwear and sneaker culture, perfect for collectors, athletes, and style-conscious individuals alike."
     ),
     Product(
       name: "Tshirt",
@@ -45,6 +49,7 @@ class _HomePageState extends State<HomePage> {
       price: 95,
       rating: 4.0,
       imagePath: "assets/images/tshirt1.png",
+      description: "Crafted for everyday comfort and timeless style, this Premium Cotton T-Shirt is made from 100% soft, breathable combed cotton that feels great against the skin. Designed with a classic crew neck and tailored fit, it offers a versatile silhouette that pairs effortlessly with jeans, shorts, or layered under jackets. Reinforced stitching at the seams ensures long-lasting durability, while pre-shrunk fabric helps maintain shape after washing. Whether you're dressing up or keeping it casual, this T-shirt delivers unmatched comfort and clean, minimal style a must-have essential for every wardrobe."
     ),
   ];
 
@@ -162,96 +167,114 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(height: 20),
 
               // Product List
-              // Product List
-Expanded(
-  child: ListView.builder(
-    itemCount: products.length,
-    itemBuilder: (context, index) {
-      final product = products[index];
+              Expanded(
+                child: ListView.builder(
+                  itemCount: products.length,
+                  itemBuilder: (context, index) {
+                    final product = products[index];
 
-      return Padding(
-        padding: const EdgeInsets.only(bottom: 40), 
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-           if (product.imagePath != null)
-              ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Image.asset(
-                  product.imagePath!, // Still using ! but now with verification
-                  height: 240,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) => Container( // Error handling
-                    height: 240,
-                    color: Colors.grey.shade200,
-                    child: Icon(Icons.error_outline, color: Colors.red),
-      ),
-    ),
-  ),
-            const SizedBox(height: 9),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  product.name,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  "\$${product.price.toStringAsFixed(0)}",
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 9), 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  product.category,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey,
-                  ),
-                ),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.star,
-                      color: Colors.amber,
-                      size: 16,
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      "(${product.rating})",
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          '/details',
+                          arguments: product,
+                        );
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 40),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            if (product.imagePath != null)
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.asset(
+                                  product.imagePath!,
+                                  height: 240,
+                                  width: double.infinity,
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      Container(
+                                        height: 240,
+                                        color: Colors.grey.shade200,
+                                        child: const Icon(
+                                          Icons.error_outline,
+                                          color: Colors.red,
+                                        ),
+                                      ),
+                                ),
+                              ),
+                            const SizedBox(height: 9),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  product.name,
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  "\$${product.price.toStringAsFixed(0)}",
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 9),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  product.category,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.star,
+                                      color: Colors.amber,
+                                      size: 16,
+                                    ),
+                                    const SizedBox(width: 4),
+                                    Text(
+                                      "(${product.rating})",
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    );
+                  },
                 ),
-              ],
-            ),
-          ],
-        ),
-      );
-    },
-  ),
-),
-
+              ),
             ],
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () async {
+          final result = await Navigator.pushNamed(context, '/add');
+          if (result != null && result is Product) {
+            setState(() {
+              products.add(result);
+            });
+          }
+        },
         backgroundColor: const Color(0xFF3F51FF),
         shape: const CircleBorder(),
         child: const Icon(Icons.add, size: 34, color: Colors.white),
