@@ -14,15 +14,44 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        textTheme: GoogleFonts.poppinsTextTheme(),
-      ),
+      theme: ThemeData(textTheme: GoogleFonts.poppinsTextTheme()),
       initialRoute: '/home',
-      routes: {
-        '/home': (context) => HomePage(),
-        '/add': (context) => AddProductPage(),
-        '/details': (context) => DetailsPage(),
-        '/search': (context) => SearchPage(),
+      onGenerateRoute: (settings) {
+        Widget page;
+
+        switch (settings.name) {
+          case '/home':
+            page = const HomePage();
+            break;
+          case '/add':
+            page = const AddProductPage();
+            break;
+          case '/details':
+            page = const DetailsPage();
+            break;
+          case '/search':
+            page = const SearchPage();
+            break;
+          default:
+            page = const HomePage();
+        }
+        return PageRouteBuilder(
+          settings: settings,
+          pageBuilder: (_, __, ___) => page,
+          transitionsBuilder: (_, animation, __, child) {
+            const begin = Offset(1.0, 0.0);
+            const end = Offset.zero;
+            final tween = Tween(
+              begin: begin,
+              end: end,
+            ).chain(CurveTween(curve: Curves.easeInOut));
+
+            return SlideTransition(
+              position: animation.drive(tween),
+              child: child,
+            );
+          },
+        );
       },
     );
   }
