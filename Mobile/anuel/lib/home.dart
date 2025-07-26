@@ -44,12 +44,12 @@ class _HomePageState extends State<HomePage> {
       description: "The Air Jordan 11 Retro is a legendary basketball sneaker that blends heritage design with modern performance. Originally released in 1995 and worn by Michael Jordan during his championship run, this iconic shoe features a sleek combination of patent leather and ballistic mesh for a bold yet refined look. A full-length Air-Sole unit provides responsive cushioning, while a carbon fiber shank and translucent rubber outsole offer stability and traction on and off the court. Known for its timeless silhouette and premium construction, the Jordan 11 remains a staple in both streetwear and sneaker culture, perfect for collectors, athletes, and style-conscious individuals alike."
     ),
     Product(
-      name: "Tshirt",
-      category: "Men's T-Shirts",
+      name: "Jordan 1",
+      category: "Men's shoe",
       price: 95,
       rating: 4.0,
-      imagePath: "assets/images/tshirt1.png",
-      description: "Crafted for everyday comfort and timeless style, this Premium Cotton T-Shirt is made from 100% soft, breathable combed cotton that feels great against the skin. Designed with a classic crew neck and tailored fit, it offers a versatile silhouette that pairs effortlessly with jeans, shorts, or layered under jackets. Reinforced stitching at the seams ensures long-lasting durability, while pre-shrunk fabric helps maintain shape after washing. Whether you're dressing up or keeping it casual, this T-shirt delivers unmatched comfort and clean, minimal style a must-have essential for every wardrobe."
+      imagePath: "assets/images/shoe3.png",
+      description: "An icon born in 1985, the Air Jordan 1 revolutionized sneaker culture with its bold design and rebellious spirit. Originally banned by the NBA, its legacy only grew stronger, becoming a symbol of self-expression on and off the court. Featuring premium materials, a high-top silhouette, and the legendary Wings logo, the AJ1 blends heritage, style, and performance like no other. Timeless, versatile, and always in demand  it’s more than a sneaker, it’s a statement."
     ),
   ];
 

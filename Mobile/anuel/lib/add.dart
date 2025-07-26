@@ -5,6 +5,10 @@ class AddProductPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController nameController = TextEditingController();
+    final TextEditingController descriptionController = TextEditingController();
+    final TextEditingController categoryController = TextEditingController();
+    final TextEditingController priceController = TextEditingController();
     return Scaffold(
       backgroundColor: Color(0xFFF2F2F2),
       body: SafeArea(
@@ -14,10 +18,13 @@ class AddProductPage extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Icon(
-                    Icons.arrow_back_ios_new_rounded,
-                    size: 20,
-                    color: Color(0xFF3F51FF),
+                  IconButton(
+                    icon: Icon(
+                      Icons.arrow_back_ios_new_rounded,
+                      size: 20,
+                      color: Color(0xFF3F51FF),
+                    ),
+                    onPressed: () => Navigator.pop(context),
                   ),
                   const SizedBox(width: 12),
                   const Text(
@@ -53,17 +60,35 @@ class AddProductPage extends StatelessWidget {
               Expanded(
                 child: ListView(
                   children: [
-                    const _InputField(label: 'name'),
-                    const _InputField(label: 'category'),
-                    const _InputField(label: 'Price',isPrice: true),
-                    const _InputField(label: 'description', maxLines: 4),
+                    _InputField(label: 'name', controller: nameController),
+                    _InputField(
+                      label: 'category',
+                      controller: categoryController,
+                    ),
+                    _InputField(
+                      label: 'Price',
+                      controller: priceController,
+                      isPrice: true,
+                    ),
+                    _InputField(
+                      label: 'description',
+                      maxLines: 4,
+                      controller: descriptionController,
+                    ),
                   ],
                 ),
               ),
               Column(
                 children: [
                   ElevatedButton(
-                    onPressed: (){}, 
+                    onPressed: () {
+                      Navigator.pop(context, {
+                        'name': nameController.text,
+                        'category': categoryController,
+                        'description': descriptionController.text,
+                        'price': double.tryParse(priceController.text) ?? 0.0,
+                      });
+                    },
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(48),
                       backgroundColor: const Color(0xFF3F51FF),
@@ -72,12 +97,15 @@ class AddProductPage extends StatelessWidget {
                       ),
                     ),
                     child: const Text(
-                      "ADD", style: TextStyle(color: Colors.white),
-                      ),
+                      "ADD",
+                      style: TextStyle(color: Colors.white),
                     ),
+                  ),
                   const SizedBox(height: 12),
                   OutlinedButton(
-                    onPressed: (){}, 
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                     style: OutlinedButton.styleFrom(
                       minimumSize: const Size.fromHeight(48),
                       side: const BorderSide(color: Colors.red),
@@ -86,10 +114,10 @@ class AddProductPage extends StatelessWidget {
                       ),
                     ),
                     child: const Text(
-                      "DELETE", style: TextStyle(color: Colors.red
-                      ),
-                      ),
+                      "DELETE",
+                      style: TextStyle(color: Colors.red),
                     ),
+                  ),
                 ],
               ),
             ],
@@ -104,8 +132,14 @@ class _InputField extends StatelessWidget {
   final String label;
   final int maxLines;
   final bool isPrice;
+  final TextEditingController? controller;
 
-  const _InputField({required this.label, this.maxLines = 1, this.isPrice = false});
+  const _InputField({
+    required this.label,
+    this.maxLines = 1,
+    this.isPrice = false,
+    this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -125,11 +159,17 @@ class _InputField extends StatelessWidget {
               children: [
                 Expanded(
                   child: TextField(
-                    keyboardType: isPrice ? TextInputType.number : TextInputType.text,
+                    controller: controller,
+                    keyboardType: isPrice
+                        ? TextInputType.number
+                        : TextInputType.text,
                     maxLines: maxLines,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                      contentPadding: EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 16,
+                      ),
                     ),
                   ),
                 ),

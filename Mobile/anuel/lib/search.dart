@@ -40,11 +40,11 @@ class _SearchPageState extends State<SearchPage> {
       imagePath: "assets/images/shoe2.png",
     ),
     Product(
-      name: "Tshirt",
-      category: "Men's T-Shirts",
+      name: "Jordan 1",
+      category: "Men's shoe",
       price: 95,
       rating: 4.0,
-      imagePath: "assets/images/tshirt1.png",
+      imagePath: "assets/images/shoe3.png",
     ),
   ];
 
