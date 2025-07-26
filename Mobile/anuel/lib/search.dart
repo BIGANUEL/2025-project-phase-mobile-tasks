@@ -63,12 +63,23 @@ class _SearchPageState extends State<SearchPage> {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               child: Row(
                 children: [
-                  const Icon(Icons.arrow_back_ios_new_rounded, color: Color(0xFF3F51FF)),
+                  IconButton(
+                    icon: Icon(
+                      Icons.arrow_back_ios_new_rounded,
+                      color: Color(0xFF3F51FF),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
                   const SizedBox(width: 10),
                   const Expanded(
                     child: Text(
                       "Search Product",
-                      style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -86,7 +97,10 @@ class _SearchPageState extends State<SearchPage> {
                     child: TextField(
                       decoration: InputDecoration(
                         hintText: "Leather",
-                        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 12,
+                        ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                           borderSide: const BorderSide(color: Colors.grey),
@@ -98,7 +112,10 @@ class _SearchPageState extends State<SearchPage> {
                             color: Color(0xFF3F51FF),
                           ),
                         ),
-                        suffixIconConstraints: const BoxConstraints(minWidth: 24, minHeight: 24),
+                        suffixIconConstraints: const BoxConstraints(
+                          minWidth: 24,
+                          minHeight: 24,
+                        ),
                       ),
                     ),
                   ),
@@ -111,7 +128,11 @@ class _SearchPageState extends State<SearchPage> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: IconButton(
-                      icon: const Icon(Icons.filter_list_sharp, color: Colors.white, size: 26),
+                      icon: const Icon(
+                        Icons.filter_list_sharp,
+                        color: Colors.white,
+                        size: 26,
+                      ),
                       onPressed: () {},
                     ),
                   ),
@@ -151,7 +172,10 @@ class _SearchPageState extends State<SearchPage> {
                   TextField(
                     controller: categoryController,
                     decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 12,
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: BorderSide(color: Colors.grey.shade50),
@@ -256,7 +280,10 @@ class ProductCard extends StatelessWidget {
                     children: [
                       Text(
                         product.name,
-                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                       const SizedBox(height: 6),
                       Text(

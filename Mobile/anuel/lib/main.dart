@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: GoogleFonts.poppinsTextTheme(),
       ),
-      initialRoute: '/search',
+      initialRoute: '/home',
       routes: {
         '/home': (context) => HomePage(),
         '/add': (context) => AddProductPage(),

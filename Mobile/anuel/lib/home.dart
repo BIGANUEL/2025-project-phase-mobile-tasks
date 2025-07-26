@@ -33,7 +33,8 @@ class _HomePageState extends State<HomePage> {
       price: 120,
       rating: 5.0,
       imagePath: "assets/images/shoe1.jpg",
-      description: "The Timberland Classic 6-Inch Boot is the original waterproof boot built to withstand harsh weather while keeping your feet dry and comfortable. Made from premium full-grain waterproof leather with seam-sealed construction, these rugged yet refined boots feature a padded collar for enhanced comfort and ankle support, along with a durable rubber lug outsole for superior traction on all terrains. Designed with Timberland's commitment to sustainability, these boots incorporate recycled materials without compromising quality. The removable OrthoLite footbed provides all-day comfort with anti-fatigue technology, making them ideal for both outdoor adventures and urban wear."
+      description:
+          "The Timberland Classic 6-Inch Boot is the original waterproof boot built to withstand harsh weather while keeping your feet dry and comfortable. Made from premium full-grain waterproof leather with seam-sealed construction, these rugged yet refined boots feature a padded collar for enhanced comfort and ankle support, along with a durable rubber lug outsole for superior traction on all terrains. Designed with Timberland's commitment to sustainability, these boots incorporate recycled materials without compromising quality. The removable OrthoLite footbed provides all-day comfort with anti-fatigue technology, making them ideal for both outdoor adventures and urban wear.",
     ),
     Product(
       name: "Jordan 11",
@@ -41,7 +42,8 @@ class _HomePageState extends State<HomePage> {
       price: 100,
       rating: 4.5,
       imagePath: "assets/images/shoe2.png",
-      description: "The Air Jordan 11 Retro is a legendary basketball sneaker that blends heritage design with modern performance. Originally released in 1995 and worn by Michael Jordan during his championship run, this iconic shoe features a sleek combination of patent leather and ballistic mesh for a bold yet refined look. A full-length Air-Sole unit provides responsive cushioning, while a carbon fiber shank and translucent rubber outsole offer stability and traction on and off the court. Known for its timeless silhouette and premium construction, the Jordan 11 remains a staple in both streetwear and sneaker culture, perfect for collectors, athletes, and style-conscious individuals alike."
+      description:
+          "The Air Jordan 11 Retro is a legendary basketball sneaker that blends heritage design with modern performance. Originally released in 1995 and worn by Michael Jordan during his championship run, this iconic shoe features a sleek combination of patent leather and ballistic mesh for a bold yet refined look. A full-length Air-Sole unit provides responsive cushioning, while a carbon fiber shank and translucent rubber outsole offer stability and traction on and off the court. Known for its timeless silhouette and premium construction, the Jordan 11 remains a staple in both streetwear and sneaker culture, perfect for collectors, athletes, and style-conscious individuals alike.",
     ),
     Product(
       name: "Jordan 1",
@@ -49,7 +51,8 @@ class _HomePageState extends State<HomePage> {
       price: 95,
       rating: 4.0,
       imagePath: "assets/images/shoe3.png",
-      description: "An icon born in 1985, the Air Jordan 1 revolutionized sneaker culture with its bold design and rebellious spirit. Originally banned by the NBA, its legacy only grew stronger, becoming a symbol of self-expression on and off the court. Featuring premium materials, a high-top silhouette, and the legendary Wings logo, the AJ1 blends heritage, style, and performance like no other. Timeless, versatile, and always in demand  it’s more than a sneaker, it’s a statement."
+      description:
+          "An icon born in 1985, the Air Jordan 1 revolutionized sneaker culture with its bold design and rebellious spirit. Originally banned by the NBA, its legacy only grew stronger, becoming a symbol of self-expression on and off the court. Featuring premium materials, a high-top silhouette, and the legendary Wings logo, the AJ1 blends heritage, style, and performance like no other. Timeless, versatile, and always in demand  it’s more than a sneaker, it’s a statement.",
     ),
   ];
 
@@ -160,7 +163,12 @@ class _HomePageState extends State<HomePage> {
                       border: Border.all(color: Colors.grey.shade300),
                       borderRadius: BorderRadius.circular(7.5),
                     ),
-                    child: const Icon(Icons.search, color: Colors.grey),
+                    child: IconButton(
+                      icon: Icon(Icons.search, color: Colors.grey),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/search');
+                      },
+                    ),
                   ),
                 ],
               ),
