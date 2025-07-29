@@ -1,9 +1,9 @@
+import 'add.dart';
+import 'details.dart';
+import 'package:anuel/home.dart';
+import 'package:anuel/search.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:anuel/home.dart';
-import 'package:anuel/add.dart';
-import 'package:anuel/details.dart';
-import 'package:anuel/search.dart';
 
 void main() => runApp(const MyApp());
 
