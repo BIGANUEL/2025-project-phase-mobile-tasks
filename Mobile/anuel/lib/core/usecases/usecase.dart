@@ -1,3 +1,12 @@
+import 'package:dartz/dartz.dart';
+import 'package:equatable/equatable.dart';
+import '../error/failure.dart';
+
 abstract class Usecase<Type, Params> {
-  Type call(Params params);
+  Future<Either<Failure, Type>> call(Params params);
+}
+
+class NoParams extends Equatable {
+  @override
+  List<Object?> get props => [];
 }
