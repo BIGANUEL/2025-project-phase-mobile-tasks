@@ -1,4 +1,4 @@
-# Flutter E-Commerce UI App
+# 🛍️ Flutter E-Commerce UI App
 
 ## 📱 App Preview
 
@@ -26,23 +26,30 @@
 
 </div>
 
+---
+
 ## 📝 Description
 
-A modern Flutter e-commerce app featuring:
+A modern, scalable Flutter e-commerce app built using **Clean Architecture** and **TDD (Test-Driven Development)** principles.
 
-- **Product browsing** with clean grid layout  
-- **Advanced search** with price range filters  
-- **Detailed product views** with size selection  
-- **Product management** for adding/editing items  
+### ✨ Features
+- **Browse Products** in a responsive grid layout
+- **Filter/Search Products** by name, price range
+- **Product Details** with descriptions, price, and image
+- **Add New Products** via a form with validation
+- **Domain-layer logic** using Clean Architecture and use cases
 
-Built with:  
-- Flutter 3.x  
-- Material Design 3  
-- Responsive layouts  
-- Custom UI components  
+---
 
-## 🚀 Getting Started
+## 🧱 Architecture
+
+This app follows **Clean Architecture**, with 3 major layers:
 
 ```bash
-flutter pub get
-flutter run
+lib/
+├── core/                # shared error handling, base classes, and utilities
+├── features/
+│   └── product/
+│       ├── domain/      # entities, repositories, and use cases
+│       ├── data/        # models and data sources
+│       └── presentation/# UI screens and widgets
