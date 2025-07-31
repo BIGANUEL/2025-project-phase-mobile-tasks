@@ -1,11 +1,16 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:dartz/dartz.dart';
+
 import 'package:anuel/features/product/domain/entities/product.dart';
 import 'package:anuel/core/error/failure.dart';
 import 'package:anuel/features/product/domain/usecases/create_product_usecase.dart';
-import '../../../../mocks/mock_product_repository.mocks.dart';
 
+import 'package:anuel/features/product/domain/repositories/product_repository.dart';
+
+@GenerateMocks([ProductRepository])
+import 'create_product_usecase_test.mocks.dart'; 
 void main() {
   late CreateProductUsecase usecase;
   late MockProductRepository mockRepository;
