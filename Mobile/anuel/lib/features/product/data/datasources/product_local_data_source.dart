@@ -4,5 +4,5 @@ abstract class ProductLocalDataSource {
   Future<void> cacheProduct(ProductModel product);
   Future<void> cacheProductList(List<ProductModel> products);
   Future<List<ProductModel>> getLastProductList();
-  Future<ProductModel> getProductById(int id);
+  Future<ProductModel> getLastProductById(int id);
 }
