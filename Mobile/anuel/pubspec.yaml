@@ -38,7 +38,7 @@ dependencies:
   # Simplifies equality checks
   equatable: ^2.0.5
   internet_connection_checker: ^1.0.0+1 
-
+  shared_preferences: ^2.2.2 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
