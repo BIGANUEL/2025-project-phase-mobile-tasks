@@ -5,10 +5,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
-import 'package:anuel/core/platform/network_info.dart' as _i6;
-import 'package:anuel/features/product/data/datasources/product_local_data_source.dart'
-    as _i5;
-import 'package:anuel/features/product/data/datasources/product_remote_data_source.dart'
+import 'package:anuel/core/platform/network_info.dart' as _i5;
+import 'package:anuel/features/product/data/datasources/product_data_source_contracts.dart'
     as _i3;
 import 'package:anuel/features/product/data/models/product_model.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
@@ -96,7 +94,7 @@ class MockProductRemoteDataSource extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockProductLocalDataSource extends _i1.Mock
-    implements _i5.ProductLocalDataSource {
+    implements _i3.ProductLocalDataSource {
   MockProductLocalDataSource() {
     _i1.throwOnMissingStub(this);
   }
@@ -130,13 +128,13 @@ class MockProductLocalDataSource extends _i1.Mock
           as _i4.Future<List<_i2.ProductModel>>);
 
   @override
-  _i4.Future<_i2.ProductModel> getProductById(int? id) =>
+  _i4.Future<_i2.ProductModel> getLastProductById(int? id) =>
       (super.noSuchMethod(
-            Invocation.method(#getProductById, [id]),
+            Invocation.method(#getLastProductById, [id]),
             returnValue: _i4.Future<_i2.ProductModel>.value(
               _FakeProductModel_0(
                 this,
-                Invocation.method(#getProductById, [id]),
+                Invocation.method(#getLastProductById, [id]),
               ),
             ),
           )
@@ -146,7 +144,7 @@ class MockProductLocalDataSource extends _i1.Mock
 /// A class which mocks [NetworkInfo].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockNetworkInfo extends _i1.Mock implements _i6.NetworkInfo {
+class MockNetworkInfo extends _i1.Mock implements _i5.NetworkInfo {
   MockNetworkInfo() {
     _i1.throwOnMissingStub(this);
   }

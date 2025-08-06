@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/product_model.dart';
-import 'product_local_data_source.dart';
+import 'product_data_source_contracts.dart';
 import 'package:anuel/core/error/exception.dart';
 const String cachedProductListKey = 'CACHED_PRODUCT_LIST';
 

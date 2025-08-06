@@ -5,8 +5,7 @@ import '../../../../core/error/failure.dart';
 import '../../../../core/platform/network_info.dart';
 import '../../domain/entities/product.dart';
 import '../../domain/repositories/product_repository.dart';
-import '../datasources/product_local_data_source.dart';
-import '../datasources/product_remote_data_source.dart';
+import 'package:anuel/features/product/data/datasources/product_data_source_contracts.dart';
 import '../models/product_model.dart';
 
 class ProductRepositoryImpl implements ProductRepository {

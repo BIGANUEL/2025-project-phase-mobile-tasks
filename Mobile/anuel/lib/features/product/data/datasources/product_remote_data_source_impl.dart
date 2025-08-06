@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import '../../../../core/error/exception.dart';
 import '../models/product_model.dart';
-import 'product_remote_data_source.dart';
+import 'product_data_source_contracts.dart';
 import 'package:anuel/core/error/failure.dart';
 
 const String baseUrl = 'https://your-api-url.com/products';

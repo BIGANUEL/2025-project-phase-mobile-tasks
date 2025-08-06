@@ -1,4 +1,4 @@
-import 'package:anuel/home.dart';
+import 'package:anuel/features/product/presentation/home.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
