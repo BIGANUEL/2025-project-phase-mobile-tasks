@@ -1,7 +1,7 @@
 import 'add.dart';
 import 'details.dart';
-import 'package:anuel/features/product/presentation/home.dart';
-import 'package:anuel/features/product/presentation/search.dart';
+import 'package:anuel/features/product/presentation/pages/home.dart';
+import 'package:anuel/features/product/presentation/pages/search.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

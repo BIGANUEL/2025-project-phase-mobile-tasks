@@ -1,21 +1,21 @@
-import '../../../../core/usecases/usecase.dart';
 import '../repositories/product_repository.dart';
-import 'package:anuel/core/error/failure.dart';
 import 'package:dartz/dartz.dart';
+import 'package:anuel/core/usecases/usecase.dart';
+import 'package:anuel/core/error/failure.dart';
 
-class DeleteProductUsecase extends Usecase<Unit,Params>{
+class DeleteProductUsecase extends Usecase<Unit, DeleteProductParams> {
   final ProductRepository repository;
 
   DeleteProductUsecase(this.repository);
 
   @override
-  Future<Either<Failure,Unit>>call(Params params) async{
+  Future<Either<Failure, Unit>> call(DeleteProductParams params) async {
     return await repository.deleteProduct(params.id);
   }
 }
 
-class Params {
+class DeleteProductParams {
   final int id;
 
-  Params(this.id);
+  DeleteProductParams(this.id);
 }
