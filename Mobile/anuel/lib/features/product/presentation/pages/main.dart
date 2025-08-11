@@ -5,7 +5,14 @@ import 'package:anuel/features/product/presentation/pages/search.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-void main() => runApp(const MyApp());
+import '../../../../injection_container.dart' as di; 
+
+
+Future<void>main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
