@@ -10,7 +10,7 @@ class AddProductPage extends StatelessWidget {
     final TextEditingController categoryController = TextEditingController();
     final TextEditingController priceController = TextEditingController();
     return Scaffold(
-      backgroundColor: Color(0xFFF2F2F2),
+      backgroundColor: const Color(0xFFF2F2F2),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -19,7 +19,7 @@ class AddProductPage extends StatelessWidget {
               Row(
                 children: [
                   IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.arrow_back_ios_new_rounded,
                       size: 20,
                       color: Color(0xFF3F51FF),
@@ -43,9 +43,9 @@ class AddProductPage extends StatelessWidget {
                   color: Colors.grey.shade300,
                   borderRadius: BorderRadius.circular(16),
                 ),
-                child: Column(
+                child: const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     Icon(Icons.image, size: 36, color: Colors.black54),
                     SizedBox(height: 16),
                     Text(
@@ -60,21 +60,10 @@ class AddProductPage extends StatelessWidget {
               Expanded(
                 child: ListView(
                   children: [
-                    _InputField(label: 'name', controller: nameController),
-                    _InputField(
-                      label: 'category',
-                      controller: categoryController,
-                    ),
-                    _InputField(
-                      label: 'Price',
-                      controller: priceController,
-                      isPrice: true,
-                    ),
-                    _InputField(
-                      label: 'description',
-                      maxLines: 4,
-                      controller: descriptionController,
-                    ),
+                    _InputField(label: 'name', controller: nameController, textFieldKey: const Key('nameField')),
+                    _InputField(label: 'category', controller: categoryController, textFieldKey: const Key('categoryField')),
+                    _InputField(label: 'Price', controller: priceController, isPrice: true, textFieldKey: const Key('priceField')),
+                    _InputField(label: 'description', maxLines: 4, controller: descriptionController, textFieldKey: const Key('descriptionField')),
                   ],
                 ),
               ),
@@ -84,7 +73,7 @@ class AddProductPage extends StatelessWidget {
                     onPressed: () {
                       Navigator.pop(context, {
                         'name': nameController.text,
-                        'category': categoryController,
+                        'category': categoryController.text,  // Fix here: get text, not controller
                         'description': descriptionController.text,
                         'price': double.tryParse(priceController.text) ?? 0.0,
                       });
@@ -133,12 +122,14 @@ class _InputField extends StatelessWidget {
   final int maxLines;
   final bool isPrice;
   final TextEditingController? controller;
+  final Key? textFieldKey; 
 
   const _InputField({
     required this.label,
     this.maxLines = 1,
     this.isPrice = false,
     this.controller,
+    this.textFieldKey,
   });
 
   @override
@@ -159,6 +150,7 @@ class _InputField extends StatelessWidget {
               children: [
                 Expanded(
                   child: TextField(
+                    key: textFieldKey,
                     controller: controller,
                     keyboardType: isPrice
                         ? TextInputType.number

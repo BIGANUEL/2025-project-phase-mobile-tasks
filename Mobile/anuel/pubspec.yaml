@@ -66,6 +66,7 @@ flutter:
   - assets/images/shoe1.jpg
   - assets/images/shoe2.png
   - assets/images/shoe3.png
+  - assets/images/splash_bg.jpg
   # To add assets to your application, add an assets section, like this:
   
   # An image asset can refer to one or more resolution-specific "variants", see

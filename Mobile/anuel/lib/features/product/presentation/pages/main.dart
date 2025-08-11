@@ -3,12 +3,13 @@ import 'details.dart';
 import 'package:anuel/features/product/presentation/pages/home.dart';
 import 'package:anuel/features/product/presentation/pages/search.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:anuel/core/router/router.dart';
+import '../../../../injection_container.dart' as di;
+import 'package:anuel/features/auth/presentation/bloc/auth_bloc.dart'; // adjust import if needed
 
-import '../../../../injection_container.dart' as di; 
-
-
-Future<void>main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
   runApp(const MyApp());
@@ -19,47 +20,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(textTheme: GoogleFonts.poppinsTextTheme()),
-      initialRoute: '/home',
-      onGenerateRoute: (settings) {
-        Widget page;
-
-        switch (settings.name) {
-          case '/home':
-            page = const HomePage();
-            break;
-          case '/add':
-            page = const AddProductPage();
-            break;
-          case '/details':
-            page = const DetailsPage();
-            break;
-          case '/search':
-            page = const SearchPage();
-            break;
-          default:
-            page = const HomePage();
-        }
-        return PageRouteBuilder(
-          settings: settings,
-          pageBuilder: (_, __, ___) => page,
-          transitionsBuilder: (_, animation, __, child) {
-            const begin = Offset(1.0, 0.0);
-            const end = Offset.zero;
-            final tween = Tween(
-              begin: begin,
-              end: end,
-            ).chain(CurveTween(curve: Curves.easeInOut));
-
-            return SlideTransition(
-              position: animation.drive(tween),
-              child: child,
-            );
-          },
-        );
-      },
+    return BlocProvider(
+      create: (_) => di.sl<AuthBloc>(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(textTheme: GoogleFonts.poppinsTextTheme()),
+        initialRoute: AppRouter.splash,
+        onGenerateRoute: AppRouter.generateRoute,
+      ),
     );
   }
 }

@@ -109,6 +109,31 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
+                  Row(
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          border: Border.all(
+                            color: Colors.grey.shade300,
+                            width: 0.6,
+                          ),
+                          borderRadius: BorderRadius.circular(7.5),
+                        ),
+                        child: IconButton(
+                          icon: const Icon(
+                            Icons.chat_bubble_outline_outlined,
+                            color: Colors.grey,
+                            size: 19,
+                          ),
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/signup');
+                          },
+                        ),
+                      ),
+                  const SizedBox(width: 8),
                   Stack(
                     children: [
                       Container(
@@ -144,9 +169,11 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
+                  ],
+                  ),
                 ],
               ),
-              const SizedBox(height: 35),
+              const SizedBox(height: 2),
 
               // Title Row
               Row(
